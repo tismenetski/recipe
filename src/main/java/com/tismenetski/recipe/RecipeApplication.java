@@ -11,3 +11,14 @@ public class RecipeApplication {
     }
 
 }
+
+
+
+
+/*
+Recipe Repository,crud repository which gives us findById,un RecipeServiceImpl we get an optional and
+make sure that the optional is indeed have values(isPresent) and return it,which goes to RecipeController which shows
+the id via show.html webpage
+
+*/
+
