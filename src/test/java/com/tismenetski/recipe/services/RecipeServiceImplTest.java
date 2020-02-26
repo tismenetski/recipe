@@ -1,5 +1,7 @@
 package com.tismenetski.recipe.services;
 
+import com.tismenetski.recipe.converters.RecipeCommandToRecipe;
+import com.tismenetski.recipe.converters.RecipeToRecipeCommand;
 import com.tismenetski.recipe.domain.Recipe;
 import com.tismenetski.recipe.repositories.RecipeRepository;
 import org.junit.Assert;
@@ -22,12 +24,18 @@ class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @BeforeEach
     void setUp() throws Exception {
 
         MockitoAnnotations.initMocks(this); //initializes recipeRepository
 
-        recipeService =new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
     @Test
     void getRecipeByIdTest() throws Exception

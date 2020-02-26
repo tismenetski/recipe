@@ -46,13 +46,13 @@
                                 <h5>Prep Time:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.prepTime}+ ' Minutes'">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Difficulty:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>Easy</p>
+                                <p th:text="${recipe.difficulty}">Easy</p>
                             </div>
                         </div>
                         <div class="row">
@@ -60,13 +60,13 @@
                                 <h5>Cooktime:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.cookTime}+' Minutes'">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Servings:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>4</p>
+                                <p th:text="${recipe.servings}">4</p>
                             </div>
                         </div>
                         <div class="row">
@@ -74,13 +74,13 @@
                                 <h5>Source:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.source}">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>URL:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>http://www.example.com</p>
+                                <p th:text="${recipe.url}">http://www.example.com</p>
                             </div>
                         </div>
                     </div>
@@ -93,9 +93,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <ul>
-                                    <li>1 Cup of milk</li>
-                                    <li>1 Teaspoon of chocolate</li>
-                                    <li>1 Teaspoon of sugar</li>
+                                    <li th:remove="all">sfsf</li>
+                                    <li th:remove="all">asdfsdfs</li>
+                                    <!--/*@thymesVar id="recipe" type="com.tismenetski.recipe.domain.Recipe"*/-->
+                                    <li th:each="ingredient : ${recipe.ingredients}"
+                                        th:text="${(ingredient.getAmount()+ ' '+ ingredient.uom.getDescription()+ ' - '+ingredient.getDescription())}">cat three</li>
                                 </ul>
                             </div>
                         </div>
@@ -108,7 +110,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>sdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerq</p>
+                                <p th:text="${recipe.directions}">sdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerq</p>
                             </div>
                         </div>
                     </div>
@@ -120,7 +122,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>sdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerq</p>
+                                <p th:text="${recipe.notes.recipeNotes}">sdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerqsdfertrtrtrtrtetertwrwerwerwerq</p>
                             </div>
                         </div>
                     </div>
