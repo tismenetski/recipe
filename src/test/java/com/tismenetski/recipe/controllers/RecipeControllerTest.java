@@ -1,5 +1,6 @@
 package com.tismenetski.recipe.controllers;
 
+import com.tismenetski.recipe.commands.RecipeCommand;
 import com.tismenetski.recipe.domain.Recipe;
 import com.tismenetski.recipe.repositories.RecipeRepository;
 import com.tismenetski.recipe.services.RecipeService;
@@ -33,6 +34,7 @@ class RecipeControllerTest {
     {
         MockitoAnnotations.initMocks(this);
         controller=new RecipeController(recipeService);
+        //mockMvc =MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
@@ -50,7 +52,16 @@ class RecipeControllerTest {
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
     }
+    /*
+    @Test
+    public void testGetNewRecipeForm() throws Exception
+    {
+        RecipeCommand command=new RecipeCommand();
 
+
+        mockMvc.perform(post)
+    }
+*/
 
 
 }
