@@ -19,14 +19,14 @@
 <body>
 
 <!--/*@thymesVar id="recipe" type="com.tismenetski.recipe.domain.Recipe"*/-->
-<div class="container-fluid" style="...">
+<div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form th:object="${recipe}" th:action="@{/recipe/}">
+            <form  th:object="${recipe}" th:action="@{/recipe/}" method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="pannel-group">
                     <div class="panel panel-primary">
-                        <div  class="panel-heading">
+                        <div class="panel-heading">
                             <h1 class="panel-title">Edit Recipe Information</h1>
                         </div>
                         <div class="panel-body">
@@ -61,16 +61,18 @@
                                     <input type="text" class="form-control" th:field="*{prepTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>Cook Time:</label>
+                                    <label>Cooktime:</label>
                                     <input type="text" class="form-control" th:field="*{cookTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Difficulty:</label>
-                                    <select class="form-control">
-                                        <option>Easy</option>
-                                        <option>Medium</option>
-                                        <option>Hard</option>
+                                    <select class="form-control" th:field="*{difficulty}">
+                                        <option th:each="difficultyValue : ${T(com.tismenetski.recipe.domain.Difficulty).values()}"
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.name()}"
+                                        >val<</option>
                                     </select>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -92,25 +94,26 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-md-11">
+                                <div class="col-md-11 ">
                                     <h1 class="panel-title">Ingredients</h1>
                                 </div>
                                 <div class="col-md-1">
-                                    <a class="btn btn-default" href="#" role="button">View</a>
+                                    <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">Edit</a>
                                 </div>
                             </div>
                         </div>
+
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <ul>
-                                        <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
+                                    <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
                                         <li th:remove="all">1 Cup of milk</li>
-                                        <li th:remove="all">1 Cup of milk</li>
+                                        <li th:remove="all">1 Teaspoon of chocolate</li>
+                                        <li>asdf</li>
                                         <li th:each="ingredient : ${recipe.ingredients}"
-                                            th:text="${(ingredient.getAmount()+' '
-                                             + ingredient.uom.getDescription() + ' '
-                                             +ingredient.getDescription())}">1 Teaspoon of sugar
+                                            th:text="${(ingredient.getAmount() +
+                                        ' ' + ingredient.uom.getDescription() +
+                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
                                         </li>
                                     </ul>
                                 </div>
@@ -128,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-primary">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Notes</h1>
                         </div>
