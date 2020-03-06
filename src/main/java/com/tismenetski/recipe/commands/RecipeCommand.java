@@ -21,6 +21,7 @@ public class RecipeCommand {
     private Difficulty difficulty;
     private NotesCommand notes;
     private Set<CategoryCommand> categories=new HashSet<>();
+    private Byte[] image;
 
     public RecipeCommand()
     {
@@ -121,5 +122,13 @@ public class RecipeCommand {
 
     public void setCategories(Set<CategoryCommand> categories) {
         this.categories = categories;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 }
